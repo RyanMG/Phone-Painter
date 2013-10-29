@@ -15,14 +15,14 @@ CanvasWrapper.prototype.message = function(headline, message) {
   });
 };
 
-CanvasWrapper.prototype.addView = function(brushId, canvas) {
-  // ADD A NODE CANVAS NODE
-  // ASSIGN THIS NODE TO CANVAS, SET CTX
+CanvasWrapper.prototype.addView = function(brushId) {
+  var canvas = new Canvas(brushId);
   this.canvases[brushId] = canvas;
 };
 
 CanvasWrapper.prototype.assign = function(data) {
-  this.canvases[data.brushId].calculateMove(data.aX, data.aY, data.aZ, data.color, data.brushSize);
+  console.log(this.canvases[data.brushId]);
+  this.canvases[data.brushId] && this.canvases[data.brushId].calculateMove(data.aX, data.aY, data.aZ, data.color, data.brushSize);
 };
 
 var Brush = function() {
@@ -57,7 +57,13 @@ var Canvas = function(brushId) {
   this.y = this.height / 2;
   this.lastX = this.x;
   this.lastY = this.y;
-  this.
+  var newC = document.createElement('canvas');
+  var shell = document.getElementById('canvasShell');
+  shell.appendChild(newC);
+  this.c = newC;
+  this.c.height = this.height;
+  this.c.width = this.width;
+  this.ctx = this.c.getContext('2d');
 };
 
 Canvas.prototype.emit = function(event, args) {
@@ -83,7 +89,7 @@ Canvas.prototype.draw = function(brushId, color, brushSize) {
 
 Canvas.prototype.calculateMove = function(aX, aY, aZ, color, brushSize) {
   this.x += aX;
-  this.y += aZ;
+  this.y += aZ + 1;
   this.draw(color, brushSize);
 };
 
@@ -108,8 +114,7 @@ var init = function(server) {
   }
 
   socket.on('brushAdd', function(data) {
-    var canvas = new Canvas(data.brushId);
-    canvasWrapper.addView(data.brushId, canvas);
+    canvasWrapper.addView(data.brushId);
   });
 
   socket.on('draw', function(data) {

@@ -45,7 +45,9 @@ io.sockets.on('connection', function(socket) {
 });
 
 io.sockets.on('disconnect', function(socket) {
-
+  brushes = {};
+  canvases = {};
+  // fix ME!!!
   // add info to socket instead of vice cersa
 });
 
