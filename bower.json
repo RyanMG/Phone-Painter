@@ -5,8 +5,6 @@
     "David Ryan Hall <david.ryan.hall@gmail.com>"
   ],
   "description": "Test for socket interactions in NodeJS with Socket.IO",
-  "license": "MIT",
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
@@ -15,6 +13,5 @@
   "dependencies": {
     "jquery": "~1.9.0",
     "normalize-css": "~2.1.3"
-  },
-  "directory" : "public/bower_components"
+  }
 }
