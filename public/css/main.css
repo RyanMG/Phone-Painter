@@ -63,6 +63,53 @@ input[type='range']::-webkit-slider-thumb {
     height: 65px;
 }
 
+#masterController {
+  height:100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #AAF2F0;
+}
+
+#masterController header {
+  position: absolute;
+  top: 0px;
+  height: 10%;
+  width: 100%;
+  background-color: #C46063;
+  border-bottom: 3px solid #999;
+}
+
+.specOptions {
+  height: 50%;
+  width: 90%;
+  margin: 0 5% 0 5%;
+  position: absolute;
+  bottom: 10px;
+  border: 2px solid #999;
+}
+
+.currentSpecInfo {
+  width: 100%;
+}
+
+.specOptions ul {
+  margin-top: 50px;
+}
+
+li.controlSpec {
+  display: inline;
+  list-style: none;
+  padding: 40px 30px 40px 30px;
+  margin: 10px 10px 10px 10px;
+  background-color: #C46063;
+  border: 4px solid #fff;
+  border-radius: 10px;
+}
+
+/* MODEL WINDOW STYLES */
+
 #modelMask {
   z-index: 5;
   height: 100%;
@@ -114,6 +161,30 @@ input[type='range']::-webkit-slider-thumb {
   left: 50%;
   margin-left: -60px;
   font-size: 18px;
+}
+
+div#pickMode {
+  height: 90%;
+  width: 90%;
+  position: fixed;
+  left:5%;
+  top: 5%;
+  background-color: #fff;
+  border:1px solid #000;
+}
+div#pickMode h1 {
+  text-align: center;
+}
+
+li.modeButton {
+  list-style: none;
+  height: 30px;
+  width: 90%;
+  border: 3px solid #000;
+  margin: 20px auto 20px auto;
+  text-align: center;
+  padding-top: 20px;
+  cursor: pointer;
 }
 
 @media (orientation:landscape) {

@@ -21,3 +21,13 @@ Brush.prototype.message = function(headline, message) {
     $('#modelWindow').fadeIn(400);
   });
 };
+
+Brush.prototype.flashColor = function(color) {
+  $('body').hide();
+  $('html').css({ 'background-color' : color });
+};
+
+Brush.prototype.setAsController = function() {
+  $('html').css({ 'background-color' : '#FFFFFF' });
+  $('body').show();
+};

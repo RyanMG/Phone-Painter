@@ -35,9 +35,21 @@ io.sockets.on('connection', function(socket) {
       var canvas = new Canvas(socket, id);
       canvases[id] = canvas;
       socket.emit('welcome', { id: id });
+
+    } else if (data.type === 'master') {
+      socket.emit('welcome', {});
     }
   });
   
+  socket.on('reset', function(data) {
+    socket.broadcast.emit('reset', data);
+  });
+
+  socket.on('makeColor', function(data) {
+    console.log('received');
+    socket.broadcast.emit('color', data);
+  });
+
   socket.on('paint', function(data) {
     socket.broadcast.emit('draw', data);
   });

@@ -8,6 +8,14 @@ html
     script(src="/socket.io/socket.io.js")
     script(src="bower_components/jquery/jquery.min.js")
   body
+    div(id="pickMode")
+      h1
+        'Pick a mode for this device'
+      ul
+        li(class="modeButton", data-type="brush") Audience Device
+        li(class="modeButton", data-type="canvas") Canvas
+        li(class="modeButton", data-type="master") Master Controller
+
     div(id="canvasShell", style="display:none")
 
     div(id="drawOptions", style="display:none")
@@ -21,17 +29,30 @@ html
       form
         input(type="range", name="brushSize", id="brushSize", value="1", min="1", max="10")
 
+    div(id="masterController", style="display:none")
+      header
+      div(class="currentSpecInfo")
+        p(class="currentSpecDetails")
+      div(class='specOptions')
+        ul
+          li(class="controlSpec", data-option="1") MAKE SCREEN WHITE
+          li(class="controlSpec", data-option="2") MAKE SCREEN RED
+          li(class="controlSpec", data-option="3") MAKE SCREEN YELLOW
+          li(class="controlSpec", data-option="4") RESET TO CONTROLLER
+
     div(id="modelMask", style="display:none")
     div(id="modelWindow", style="display:none")
       h1
       p
       button(class="closeMsg") Close
+    script(src="js/phoneBrush.js")
+    script(src="js/brush.js")
+    script(src="js/canvas.js")
+    script(src="js/canvaswrapper.js")
+    script(src="js/masterController.js")
 
     script(src="js/phoneBrush.js")
-    script.
-      var server = '10.1.1.28:9001';
-      //console.log('');
-      init(server);
+
 
 //  COLORS:
 //  #8158D9 PURPLE

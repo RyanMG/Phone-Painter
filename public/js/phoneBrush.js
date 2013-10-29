@@ -3,6 +3,7 @@ var server = '10.1.1.28:9001';
 
 var brush;
 var canvasWrapper;
+var mc;
 
 var init = function(type) {
   
@@ -24,22 +25,39 @@ var init = function(type) {
       canvasWrapper = new CanvasWrapper(data.id, socket);
       canvasWrapper.message('Welcome!', "Connect your phone to " + server + " to start drawing!");
     });
+  
   } else if (type === 'master') {
-    $('#masterController').show();
-    socket.emit('device', {type: 'controller' });
+    mc = new MasterController();
+    socket.emit('device', { type: 'master' });
+    mc.socket = socket;
     socket.on('welcome', function(data) {
       
     });
   }
 
   socket.on('brushAdd', function(data) {
-    canvasWrapper.addView(data.brushId);
+    if (brush instanceof Brush) {
+      canvasWrapper.addView(data.brushId);
+    }
+  });
+
+  socket.on('reset', function(data) {
+    if (brush instanceof Brush) {
+      brush.setAsController();
+    }
   });
 
   socket.on('draw', function(data) {
-    canvasWrapper.assign(data);
+    if (brush instanceof Brush) {
+      canvasWrapper.assign(data);
+    }
   });
 
+  socket.on('color', function(data) {
+    if (brush instanceof Brush) {
+       brush.flashColor(data.color);
+    }
+  });
 };
 
 var initMotionListener = function() {
@@ -80,6 +98,25 @@ $(document).ready(function() {
     brush.emit('colorChange', { color: color });
   });
 
+  $('.controlSpec').on('click touchend', function(e) {
+    e.preventDefault();
+    var option = $(this).data('option');
+    switch (option) {
+      case 1:
+        mc.emit('makeColor', { color: '#FFFFFF' });
+        break;
+      case 2:
+        mc.emit('makeColor', { color: '#FF0000' });
+        break;
+      case 3:
+        mc.emit('makeColor', { color: '#FFE100' });
+        break;
+      case 4:
+        mc.emit('reset', {});
+        break;
+    }
+  });
+
   // geolocation - have not touched this yet  
   // var position;
   // var watchId = navigator.geolocation.watchPosition(function(pos) {
@@ -93,6 +130,9 @@ $(document).ready(function() {
       $('#modelWindow h1').text('');
       $('#modelWindow p').text('');
     });
+    if (brush instanceof Brush) {
+      initMotionListener();
+    }
   });
 
 });
