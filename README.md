@@ -7,6 +7,6 @@ The accelerometer and gyroscope of connected mobile devices are used to get move
 This application was the prototype on which the Synesthesia project was built.
 
 ### Tech Stack
-Node JS / Express for the server
-Socket.IO for communication
-HTML5 Canvas for the on-screen 'painting'
+* Node JS / Express for the server
+* Socket.IO for communication
+* HTML5 Canvas for the on-screen 'painting'
