@@ -1,4 +1,4 @@
-#SocketTest
+#Phone Painter
 
 In preparation for the start of the Synesthesia project with Kine-Tech, I built a simple application that allows you to use your smartphone to 'paint' in an HTML5 canvas window. The application utilizes socket.IO to facilitate communication between devices in real time, and allows multiple devices to use the same canvas to to draw at the same time.
 
