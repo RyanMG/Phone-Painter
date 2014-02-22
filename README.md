@@ -4,7 +4,7 @@ In preparation for the start of the Synesthesia project with Kine-Tech, I built 
 
 The accelerometer and gyroscope of connected mobile devices are used to get movement data, which is translated to 'paint strokes' in the canvas.
 
-This application was the prototype on which the Synesthesia project was built.
+This application was the prototype on which the Synesthesia project was built. Prototyped over a single day in preperation for the kick off the kine-tech project.
 
 ### Tech Stack
 * Node JS / Express for the server
